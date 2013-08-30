@@ -1,0 +1,6 @@
+#eclipse files
+.project
+.pydevproject
+
+#compiled files
+*.pyc
