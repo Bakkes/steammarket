@@ -14,11 +14,11 @@ class MarketItem:
         self.item_name = item_name
       
     def get_sell_count(self):
-        return MarketItem._get_key_count(self.appid, self.item_name)
+        return MarketItem._get_sell_count(self.appid, self.item_name)
       
     #Using some ugly regex to parse javascript. Yeah...
     @staticmethod
-    def _get_key_count(appid, item_name):
+    def _get_sell_count(appid, item_name):
         data = requests.get("http://steamcommunity.com/market/listings/{appid}/{item_name}".format(appid=appid, item_name=item_name))
         match = re.search(r'var line1=\[(.*?)\];', data.text.encode('utf8'))
         allmatches = re.findall("\[\"(.*?)\",(.*?),\"([0-9]*) sold\"\]", match.group(1))
